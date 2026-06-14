@@ -60,7 +60,7 @@ All environment variables have been renamed:
 - Shell scripts
 
 ### 6. URLs & References
-- GitHub repository references: `pewdiepie-archdaemon/odysseus` → `pewdiepie-archdaemon/ava`
+- GitHub repository references: `copyrightnews/AVA` → `copyrightnews/AVA`
 - Documentation URLs
 - Internal API references
 
@@ -78,7 +78,7 @@ All environment variables have been renamed:
 1. **Rename root directory**: Rename the project folder from `odysseus` to `ava`
 2. **Update git remote** (if needed):
    ```bash
-   git remote set-url origin https://github.com/pewdiepie-archdaemon/ava.git
+   git remote set-url origin https://github.com/copyrightnews/AVA.git
    ```
 3. **Update .env file**: If you have a `.env` file, update any `ODYSSEUS_*` variables to `AVA_*`
 4. **Restart services**: If Docker is running, recreate containers:
