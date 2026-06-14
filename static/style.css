@@ -1,5 +1,5 @@
 /* ============================================ */
-/* Odysseus UI — Consolidated Stylesheet        */
+/* AVA UI — Consolidated Stylesheet        */
 /* ============================================ */
 
 
@@ -113,6 +113,12 @@ body {
 @font-face { font-family: 'Fira Code'; font-weight: 300; font-style: normal; font-display: swap; src: url('/static/fonts/FiraCode-Light.woff2') format('woff2'); }
 @font-face { font-family: 'Fira Code'; font-weight: 400; font-style: normal; font-display: swap; src: url('/static/fonts/FiraCode-Regular.woff2') format('woff2'); }
 @font-face { font-family: 'Fira Code'; font-weight: 600; font-style: normal; font-display: swap; src: url('/static/fonts/FiraCode-SemiBold.woff2') format('woff2'); }
+
+/* Self-hosted SF Pro Display font (macOS) */
+@font-face { font-family: 'SF Pro Display'; font-weight: 400; font-style: normal; font-display: swap; src: url('/static/fonts/sf-pro/SF-Pro-Display-Regular.otf') format('opentype'); }
+@font-face { font-family: 'SF Pro Display'; font-weight: 500; font-style: normal; font-display: swap; src: url('/static/fonts/sf-pro/SF-Pro-Display-Medium.otf') format('opentype'); }
+@font-face { font-family: 'SF Pro Display'; font-weight: 600; font-style: normal; font-display: swap; src: url('/static/fonts/sf-pro/SF-Pro-Display-Semibold.otf') format('opentype'); }
+@font-face { font-family: 'SF Pro Display'; font-weight: 700; font-style: normal; font-display: swap; src: url('/static/fonts/sf-pro/SF-Pro-Display-Bold.otf') format('opentype'); }
 
 /* Code block baseline */
 pre, code, .hljs {
@@ -5650,7 +5656,7 @@ body.bg-pattern-sparkles {
     /* (legacy toolbar-toggle styles removed — now using .vis-* classes) */
 
     /* Demo highlight pulse */
-    .odysseus-highlight {
+    .ava-highlight {
       outline: 2px solid var(--accent, var(--red)) !important;
       outline-offset: 1px;
       box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent, var(--red)) 18%, transparent);
@@ -5778,7 +5784,7 @@ body.bg-pattern-sparkles {
     @media (prefers-reduced-motion: reduce) {
       .th-cursor, .th-modal-group, .th-zone { animation: none !important; }
     }
-    .odysseus-hl-label {
+    .ava-hl-label {
       position: absolute;
       top: -22px;
       left: 8px;
@@ -21648,7 +21654,7 @@ body.gallery-selecting .gallery-dl-btn,
 
 /* Welcome name — left-to-right wipe with a touch of horizontal stretch.
    Fires on initial render via the .welcome-name rule; restarts on Nobody⇄
-   Odysseus toggle via JS reflow trick. */
+   AVA toggle via JS reflow trick. */
 .welcome-name {
   transform-origin: left center;
   animation: welcome-name-reveal 0.55s cubic-bezier(0.34, 1.32, 0.55, 1) both;
