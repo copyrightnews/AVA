@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quick Apply - macOS Theme</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+    .card {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      border-radius: 20px;
+      padding: 40px;
+      max-width: 600px;
+      width: 100%;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    }
+    h1 {
+      font-size: 32px;
+      font-weight: 600;
+      color: #1d1d1f;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+    .subtitle {
+      text-align: center;
+      color: #666;
+      margin-bottom: 30px;
+      font-size: 16px;
+    }
+    .theme-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+    .theme-option {
+      border: 2px solid #e5e5e5;
+      border-radius: 12px;
+      padding: 20px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-align: center;
+    }
+    .theme-option:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+    .theme-option.light {
+      background: linear-gradient(135deg, #f5f5f7 0%, #ffffff 100%);
+      border-color: #d2d2d7;
+    }
+    .theme-option.dark {
+      background: linear-gradient(135deg, #1e1e1e 0%, #2d2d2d 100%);
+      border-color: #3a3a3c;
+      color: white;
+    }
+    .theme-option h2 {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .theme-option p {
+      font-size: 14px;
+      opacity: 0.7;
+    }
+    .theme-preview {
+      display: flex;
+      gap: 6px;
+      justify-content: center;
+      margin: 15px 0;
+    }
+    .color-dot {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      border: 2px solid rgba(0, 0, 0, 0.1);
+    }
+    .status {
+      background: #d1ecf1;
+      border: 1px solid #bee5eb;
+      color: #0c5460;
+      padding: 15px;
+      border-radius: 10px;
+      text-align: center;
+      font-weight: 500;
+      display: none;
+      margin-top: 20px;
+    }
+    .status.success {
+      background: #d4edda;
+      border-color: #c3e6cb;
+      color: #155724;
+    }
+    .status.show { display: block; }
+    .info {
+      background: #f8f9fa;
+      padding: 20px;
+      border-radius: 10px;
+      margin-top: 20px;
+      font-size: 14px;
+      color: #666;
+    }
+    .info h3 {
+      color: #333;
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+    .info ul {
+      list-style: none;
+      padding: 0;
+    }
+    .info li {
+      padding: 5px 0;
+      padding-left: 20px;
+      position: relative;
+    }
+    .info li:before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: #007aff;
+      font-weight: bold;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .card { animation: fadeIn 0.5s ease; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>🎨 Apply macOS Theme</h1>
+    <p class="subtitle">Choose your preferred appearance</p>
+    
+    <div class="theme-grid">
+      <div class="theme-option light" onclick="applyTheme('light')">
+        <h2>☀️ Light</h2>
+        <div class="theme-preview">
+          <span class="color-dot" style="background: #f5f5f7;"></span>
+          <span class="color-dot" style="background: #ffffff;"></span>
+          <span class="color-dot" style="background: #1d1d1f;"></span>
+          <span class="color-dot" style="background: #007aff;"></span>
+        </div>
+        <p>Clean & bright</p>
+      </div>
+      
+      <div class="theme-option dark" onclick="applyTheme('dark')">
+        <h2>🌙 Dark</h2>
+        <div class="theme-preview">
+          <span class="color-dot" style="background: #1e1e1e;"></span>
+          <span class="color-dot" style="background: #2d2d2d;"></span>
+          <span class="color-dot" style="background: #ffffff;"></span>
+          <span class="color-dot" style="background: #0a84ff;"></span>
+        </div>
+        <p>Easy on the eyes</p>
+      </div>
+    </div>
+    
+    <div id="status" class="status"></div>
+    
+    <div class="info">
+      <h3>What you'll get:</h3>
+      <ul>
+        <li>SF Pro Display font (authentic macOS font)</li>
+        <li>macOS color palette & styling</li>
+        <li>Frosted glass effects</li>
+        <li>Clean, minimal appearance</li>
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    function applyTheme(type) {
+      const themes = {
+        light: {
+          name: 'macos-light',
+          colors: {
+            bg: '#f5f5f7',
+            fg: '#1d1d1f',
+            panel: '#ffffff',
+            border: '#d2d2d7',
+            red: '#007aff'
+          },
+          font: 'macos',
+          bgPattern: 'none',
+          frosted: true,
+          density: 'comfortable'
+        },
+        dark: {
+          name: 'macos-dark',
+          colors: {
+            bg: '#1e1e1e',
+            fg: '#ffffff',
+            panel: '#2d2d2d',
+            border: '#3a3a3c',
+            red: '#0a84ff'
+          },
+          font: 'macos',
+          bgPattern: 'none',
+          frosted: true,
+          density: 'comfortable'
+        }
+      };
+      
+      const theme = themes[type];
+      localStorage.setItem('ava-theme', JSON.stringify(theme));
+      
+      const status = document.getElementById('status');
+      status.textContent = `✅ macOS ${type === 'light' ? 'Light' : 'Dark'} Theme Applied! Redirecting...`;
+      status.className = 'status success show';
+      
+      setTimeout(() => {
+        window.location.href = '/';
+      }, 1500);
+    }
+  </script>
+</body>
+</html>

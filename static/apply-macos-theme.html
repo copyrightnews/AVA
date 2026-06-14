@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apply macOS Theme</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+    .container {
+      background: white;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      text-align: center;
+      max-width: 500px;
+    }
+    h1 { margin-top: 0; color: #333; }
+    button {
+      background: #007aff;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      margin: 10px;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+    button:hover { background: #0051d5; transform: translateY(-2px); }
+    button:active { transform: translateY(0); }
+    .dark-btn { background: #1e1e1e; }
+    .dark-btn:hover { background: #2d2d2d; }
+    .status {
+      margin-top: 20px;
+      padding: 15px;
+      border-radius: 8px;
+      display: none;
+      font-weight: 500;
+    }
+    .status.success {
+      background: #d4edda;
+      color: #155724;
+      border: 1px solid #c3e6cb;
+    }
+    .status.info {
+      background: #d1ecf1;
+      color: #0c5460;
+      border: 1px solid #bee5eb;
+    }
+    .info-box {
+      background: #f8f9fa;
+      padding: 15px;
+      border-radius: 8px;
+      margin: 20px 0;
+      font-size: 14px;
+      color: #666;
+      text-align: left;
+    }
+    .info-box strong { color: #333; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🎨 Apply macOS Theme</h1>
+    
+    <div class="info-box">
+      <strong>What this does:</strong>
+      <ul style="margin: 10px 0 0 0; padding-left: 20px;">
+        <li>Sets macOS theme (light or dark)</li>
+        <li>Applies SF Pro Display font globally</li>
+        <li>Enables frosted glass effects</li>
+        <li>Saves settings to localStorage</li>
+      </ul>
+    </div>
+
+    <button onclick="applyMacOSLight()">Apply macOS Light Theme</button>
+    <button class="dark-btn" onclick="applyMacOSDark()">Apply macOS Dark Theme</button>
+    
+    <div id="status" class="status"></div>
+  </div>
+
+  <script>
+    function showStatus(message, type = 'success') {
+      const status = document.getElementById('status');
+      status.textContent = message;
+      status.className = 'status ' + type;
+      status.style.display = 'block';
+    }
+
+    function applyMacOSLight() {
+      const theme = {
+        name: 'macos-light',
+        colors: {
+          bg: '#f5f5f7',
+          fg: '#1d1d1f',
+          panel: '#ffffff',
+          border: '#d2d2d7',
+          red: '#007aff'
+        },
+        font: 'macos',
+        bgPattern: 'none',
+        frosted: true,
+        density: 'comfortable'
+      };
+      
+      localStorage.setItem('ava-theme', JSON.stringify(theme));
+      showStatus('✅ macOS Light Theme Applied! Redirecting to AVA...', 'success');
+      
+      setTimeout(() => {
+        window.location.href = '/';
+      }, 1500);
+    }
+
+    function applyMacOSDark() {
+      const theme = {
+        name: 'macos-dark',
+        colors: {
+          bg: '#1e1e1e',
+          fg: '#ffffff',
+          panel: '#2d2d2d',
+          border: '#3a3a3c',
+          red: '#0a84ff'
+        },
+        font: 'macos',
+        bgPattern: 'none',
+        frosted: true,
+        density: 'comfortable'
+      };
+      
+      localStorage.setItem('ava-theme', JSON.stringify(theme));
+      showStatus('✅ macOS Dark Theme Applied! Redirecting to AVA...', 'success');
+      
+      setTimeout(() => {
+        window.location.href = '/';
+      }, 1500);
+    }
+
+    // Check if already on the right page
+    if (window.location.pathname !== '/apply-macos-theme.html' && 
+        window.location.pathname !== '/static/apply-macos-theme.html') {
+      showStatus('ℹ️ Navigate to /apply-macos-theme.html to apply themes', 'info');
+    }
+  </script>
+</body>
+</html>
